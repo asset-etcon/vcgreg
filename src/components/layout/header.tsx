@@ -12,12 +12,12 @@ export function Header({
   onMenuClick: () => void;
 }) {
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b border-slate-200 bg-white/95 px-4 backdrop-blur sm:px-6 lg:px-8">
-      <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-2 border-b border-slate-200 bg-white/95 px-3 backdrop-blur sm:gap-4 sm:px-6 lg:px-8">
+      <div className="flex min-w-0 flex-1 items-center gap-1.5 sm:gap-3">
         <button
           type="button"
           onClick={onMenuClick}
-          className="rounded-md p-2 text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 lg:hidden"
+          className="-ml-1 shrink-0 rounded-md p-2 text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 lg:hidden"
           aria-label="Open navigation"
         >
           <Menu className="h-5 w-5" />

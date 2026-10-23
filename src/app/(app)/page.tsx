@@ -154,8 +154,8 @@ export default async function DashboardPage() {
               ) : (
                 data.recentDocuments.map((document) => (
                   <TR key={document.id}>
-                    <TD>
-                      <div className="flex items-center gap-1">
+                    <TD label="Reference">
+                      <div className="flex items-center gap-1 max-md:justify-end">
                         <span className="font-mono text-xs font-medium text-slate-900">
                           {document.reference_number}
                         </span>
@@ -165,7 +165,7 @@ export default async function DashboardPage() {
                         />
                       </div>
                     </TD>
-                    <TD>
+                    <TD label="Document">
                       <Link
                         href={`/documents/${document.id}/edit`}
                         className="font-medium text-slate-900 hover:text-blue-800"
@@ -176,10 +176,13 @@ export default async function DashboardPage() {
                         {document.document_types?.name ?? "Unknown type"}
                       </p>
                     </TD>
-                    <TD>
+                    <TD label="Status">
                       <StatusBadge status={document.status} />
                     </TD>
-                    <TD className="whitespace-nowrap text-sm text-slate-500">
+                    <TD
+                      label="Issued"
+                      className="whitespace-nowrap text-sm text-slate-500"
+                    >
                       {formatDate(document.issue_date)}
                     </TD>
                   </TR>

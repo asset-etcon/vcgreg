@@ -20,11 +20,8 @@ export function TableWrapper({
       )}
       {...props}
     >
-      <p className="border-b border-slate-100 px-4 py-2 text-xs text-slate-500 sm:hidden">
-        Swipe table horizontally to see all columns.
-      </p>
-      <div className="max-w-full overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch]">
-        <table className="w-full min-w-[640px] border-collapse text-left text-sm sm:min-w-full">
+      <div className="w-full overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch]">
+        <table className="block w-full border-collapse text-left text-sm md:table md:min-w-[720px]">
           {children}
         </table>
       </div>
@@ -40,7 +37,7 @@ export function THead({
   return (
     <thead
       className={cn(
-        "border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wide text-slate-500",
+        "hidden border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wide text-slate-500 md:table-header-group",
         className,
       )}
       {...props}
@@ -51,7 +48,12 @@ export function THead({
 }
 
 export function TBody(props: HTMLAttributes<HTMLTableSectionElement>) {
-  return <tbody className="divide-y divide-slate-100" {...props} />;
+  return (
+    <tbody
+      className="block divide-y divide-slate-100 md:table-row-group"
+      {...props}
+    />
+  );
 }
 
 export function TR({
@@ -60,7 +62,10 @@ export function TR({
 }: HTMLAttributes<HTMLTableRowElement>) {
   return (
     <tr
-      className={cn("transition-colors hover:bg-slate-50/80", className)}
+      className={cn(
+        "block border-b border-slate-100 transition-colors last:border-b-0 hover:bg-slate-50/80 md:table-row md:border-0",
+        className,
+      )}
       {...props}
     />
   );
@@ -81,13 +86,32 @@ export function TH({
 
 export function TD({
   className,
+  label,
+  children,
   ...props
-}: TdHTMLAttributes<HTMLTableCellElement>) {
+}: TdHTMLAttributes<HTMLTableCellElement> & { label?: string }) {
   return (
     <td
-      className={cn("px-4 py-3.5 align-middle text-slate-700", className)}
+      className={cn(
+        "px-4 py-3.5 align-middle text-slate-700",
+        label && "max-md:block max-md:px-4 max-md:py-2.5",
+        className,
+      )}
       {...props}
-    />
+    >
+      {label ? (
+        <div className="flex items-start justify-between gap-3 md:block">
+          <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-slate-500 md:hidden">
+            {label}
+          </span>
+          <div className="min-w-0 max-md:flex-1 max-md:text-right">
+            {children}
+          </div>
+        </div>
+      ) : (
+        children
+      )}
+    </td>
   );
 }
 
@@ -99,10 +123,10 @@ export function TableEmpty({
   children: ReactNode;
 }) {
   return (
-    <tr>
+    <tr className="block md:table-row">
       <td
         colSpan={colSpan}
-        className="px-6 py-12 text-center text-sm text-slate-500"
+        className="block px-6 py-10 text-center text-sm text-slate-500 md:table-cell md:py-12"
       >
         {children}
       </td>

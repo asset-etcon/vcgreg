@@ -122,15 +122,15 @@ export default async function DocumentsPage({
           ) : (
             documents.map((document) => (
               <TR key={document.id}>
-                <TD>
-                  <div className="flex items-center gap-1">
+                <TD label="Reference">
+                  <div className="flex items-center gap-1 max-md:justify-end">
                     <span className="whitespace-nowrap font-mono text-xs font-semibold text-slate-900">
                       {document.reference_number}
                     </span>
                     <CopyButton value={document.reference_number} />
                   </div>
                 </TD>
-                <TD className="max-w-xs">
+                <TD label="Document" className="max-w-xs">
                   <Link
                     href={`/documents/${document.id}/edit`}
                     className="line-clamp-2 font-medium text-slate-900 hover:text-blue-800"
@@ -143,8 +143,8 @@ export default async function DocumentsPage({
                     </p>
                   ) : null}
                 </TD>
-                <TD>
-                  <div className="flex items-center gap-2">
+                <TD label="Type">
+                  <div className="flex items-center gap-2 max-md:justify-end">
                     <CodeBadge>
                       {document.document_types?.code ?? "—"}
                     </CodeBadge>
@@ -153,16 +153,22 @@ export default async function DocumentsPage({
                     </span>
                   </div>
                 </TD>
-                <TD className="whitespace-nowrap text-sm text-slate-600">
+                <TD
+                  label="Version"
+                  className="whitespace-nowrap text-sm text-slate-600"
+                >
                   {document.version}
                 </TD>
-                <TD>
+                <TD label="Status">
                   <StatusBadge status={document.status} />
                 </TD>
-                <TD className="whitespace-nowrap text-sm text-slate-500">
+                <TD
+                  label="Issued"
+                  className="whitespace-nowrap text-sm text-slate-500"
+                >
                   {formatDate(document.issue_date)}
                 </TD>
-                <TD>
+                <TD label="Actions">
                   <div className="flex items-center justify-end gap-1">
                     <Link
                       href={`/documents/${document.id}/edit`}

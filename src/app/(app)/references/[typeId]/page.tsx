@@ -63,11 +63,11 @@ export default async function DocumentTypeReferencesPage({
                 <TableEmpty colSpan={5}><p className="font-medium text-slate-700">No references for this type yet.</p><p className="mt-1">Generate one to add it here.</p></TableEmpty>
               ) : documents.map((document) => (
                 <TR key={document.id}>
-                  <TD><div className="flex items-center gap-1"><span className="whitespace-nowrap font-mono text-xs font-semibold">{document.reference_number}</span><CopyButton value={document.reference_number} /></div></TD>
-                  <TD>{document.title || "—"}</TD>
-                  <TD>{document.issue_year}</TD>
-                  <TD><StatusBadge status={document.status} /></TD>
-                  <TD className="text-right"><Link href={`/documents/${document.id}/edit`} className="text-sm font-medium text-blue-800 hover:underline">View details</Link></TD>
+                  <TD label="Reference"><div className="flex items-center gap-1 max-md:justify-end"><span className="whitespace-nowrap font-mono text-xs font-semibold">{document.reference_number}</span><CopyButton value={document.reference_number} /></div></TD>
+                  <TD label="Title">{document.title || "—"}</TD>
+                  <TD label="Year">{document.issue_year}</TD>
+                  <TD label="Status"><StatusBadge status={document.status} /></TD>
+                  <TD label="Details" className="text-right"><Link href={`/documents/${document.id}/edit`} className="text-sm font-medium text-blue-800 hover:underline">View details</Link></TD>
                 </TR>
               ))}
             </TBody>

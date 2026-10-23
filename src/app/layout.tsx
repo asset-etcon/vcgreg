@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Manrope } from "next/font/google";
 import type { ReactNode } from "react";
 
@@ -21,6 +21,12 @@ export const metadata: Metadata = {
   },
   description:
     "Generate and maintain controlled document reference numbers for Vethan Concepts Limited.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

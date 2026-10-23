@@ -119,21 +119,24 @@ export default async function DocumentTypesPage({
           ) : (
             documentTypes.map((type) => (
               <TR key={type.id}>
-                <TD>
+                <TD label="Document type">
                   <p className="font-medium text-slate-900">{type.name}</p>
                 </TD>
-                <TD>
+                <TD label="Code">
                   <CodeBadge>{type.code}</CodeBadge>
                 </TD>
-                <TD className="max-w-md">
+                <TD label="Description" className="max-w-md">
                   <p className="line-clamp-2 text-sm text-slate-500">
                     {type.description || "—"}
                   </p>
                 </TD>
-                <TD className="whitespace-nowrap text-xs text-slate-500">
+                <TD
+                  label="Last updated"
+                  className="whitespace-nowrap text-xs text-slate-500"
+                >
                   {formatDateTime(type.updated_at)}
                 </TD>
-                <TD>
+                <TD label="Actions">
                   <div className="flex items-center justify-end gap-1">
                     <Link
                       href={`/document-types/${type.id}/edit`}
